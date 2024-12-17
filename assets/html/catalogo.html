@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo - DECASA KIDS RD</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="../images/logoDECASAKids.ico" type="image/x-icon">
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="../css/catalogo.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <div class="header-search">
+        <p>+1 (809) 899-9499</p>
+      </div>
+
+      <a href="https://decasakids.com/" class="logo">
+        <img src="../images/Logo/logoDECASAKids.webp" alt="Casmart logo" width="100" height="80">
+      </a>
+
+      <div class="header-actions active">
+
+        <a href="#catalogo" class="header-action-btn navbar-link">
+          <ion-icon name="cart-outline" aria-hidden="true"></ion-icon>
+
+          <p class="header-action-label active">Ver</p>
+        </a>
+
+
+
+      </div>
+
+      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+
+          <a href="./sobre.html" class="logo">
+            <img src="../images/Logo/logoDECASAKids.webp" alt="Casmart logo" width="70" height="40">
+          </a>
+
+          <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="./sobre.html" class="navbar-link">Sobre Nosotros</a>
+          </li>
+
+          <li class="activelist">
+            <a href="#catalogo" class="navbar-link">Catálogo</a>
+          </li>
+          <li>
+            <a href="https://wa.me/18098999499" target="_blank" class="navbar-link">Contáctanos</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Catálogo</p>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="service">
+        <div class="container">
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-item-icon">
+                <img src="../images/service-icon-1.svg" alt="Service icon">
+              </div>
+
+              <div class="service-content">
+                <p class="service-item-title">¡Envíos a Domicilio!</p>
+
+                <p class="service-item-text">Llevamos el servicio a ti.</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-item-icon">
+                <img src="../images/service-icon-3.svg" alt="Service icon">
+              </div>
+
+              <div class="service-content">
+                <p class="service-item-title">Seguridad</p>
+
+                <p class="service-item-text">Compra con seguridad.</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-item-icon">
+                <img src="../images/service-icon-4.svg" alt="Service icon">
+              </div>
+
+              <div class="service-content">
+                <p class="service-item-title">Soporte 24/7</p>
+
+                <p class="service-item-text">Siempre contigo</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #PRODUCT
+      -->
+      <div id="purchase-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Confirmar compra</h2>
+            <div id="modal-products"></div> <!-- Productos seleccionados -->
+            <form id="order-form" onsubmit="return sendToGoogleSheets(event)">
+                <label for="companyName">Nombre:</label>
+                <input class="input_mo" type="text" id="companyName" name="companyName" required>
+                <label for="email">Correo Electrónico:</label>
+                <input class="input_mo" type="email" id="email" name="email" required>
+                <label for="phone">Teléfono:</label>
+                <input class="input_mo" type="tel" id="phone" name="phone" required>
+                <br>
+                <br>
+                <div class="btn_container">
+                    <button type="submit" class="btn_modal">Enviar pedido</button>
+                    <button type="button" onclick="closeModal()" class="btn_modal">Volver a la tienda</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+
+      <section class="section product">
+        <div class="container">
+          <h2 class="h2 section-title">Nuestros Productos</h2>
+
+          <ul class="caja_container" id="catalogo">
+            <div id="cart-box" class="cart-box">
+              <div id="box-content" class="box-content"></div>
+            </div>
+            <div>
+              <h1>Tú Eliges, Nosotros Empacamos</h1>
+              <br>
+              <p>Total: $<span id="total-price">0.00</span></p>
+              <br>
+              <button class="btn_compra" onclick="openModal()">Completar Compra</button>
+            </div>
+          </ul>
+          <br>
+          <br>
+          <center>
+            <div class="header-searche">
+              <input type="search" name="search" placeholder="Buscar productos..." class="input-field"
+                id="search-input">
+
+              <button class="search-btne" aria-label="Search">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
+            </div>
+          </center>
+          <br>
+          <br>
+
+          <ul class="filter-list">
+            <li>
+              <button class="filter-btn  active" data-target="section1">SONAJEROS AMIGURUMI</button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-target="section2">COMPAÑERO AMIGURUMI</button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-target="section3">SUJETADOR AMIGURUMI</button>
+            </li>
+
+          </ul>
+          <br>
+          <br>
+          <div id="filtered-container" style="display: none;">
+            <!-- Aquí se mostrarán los productos filtrados -->
+          </div>
+          <div class="container_sub visible" id="section1">
+            <ul class="product-list">
+
+              <li id="alce">
+                <div class="product-card" data-price="510" data-name="Sonajero Alce">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_alce.webp" alt="Sonajero Alces" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Alce</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510.00 DOP</data>
+                    </div>
+                  </div>
+
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Elefante">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_elefante.webp" alt="Sonajero Elefante"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Elefante</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero León">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_leon.webp" alt="Sonajero Leon" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero León</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Oso">
+
+                  <figure class="card-banner">
+
+                    <a href="#">
+                      <img src="../images/Catalogo/Sonajeros/sonajero_oso.webp" alt="Sonajero Oso" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </a>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Oso</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Oso Panda">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_panda.webp" alt="sonajero_panda" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Oso Panda</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Pingüino">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_pinguino.webp" alt="Sonajero sonajero_pinguino"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Pingüino</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Tortuga">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_tortuga.webp" alt="sonajero_tortuga"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Tortuga</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero
+                Unicornio">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sonajeros/sonajero_unicornio.webp" alt="Cotton Shirt for Men"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero
+                        Unicornio</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Dinosaurio">
+
+                  <figure class="card-banner">
+
+                    <a href="#">
+                      <img src="../images/Catalogo/Sonajeros/sonajero_dinosaurio.webp" alt="sonajero" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </a>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Dinosaurio</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Dinosaurio">
+
+                  <figure class="card-banner">
+
+                    <a href="#">
+                      <img src="../images/Catalogo/Sonajeros/sonajero_dinosaurio2.webp" alt="Ribbed Cotton Bodysuits"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </a>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Dinosaurio</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Tortuga">
+
+                  <figure class="card-banner">
+
+                    <a href="#">
+                      <img src="../images/Catalogo/Sonajeros/sonajero_turtuga_gris.webp" alt="Ribbed Cotton Bodysuits"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </a>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Tortuga</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="510" data-name="Sonajero Pingüino">
+
+                  <figure class="card-banner">
+
+                    <a href="#">
+                      <img src="../images/Catalogo/Sonajeros/sonajero_pinguino_azul.webp" alt="Ribbed Cotton Bodysuits"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </a>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sonajero Pingüino</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet y bambu
+                      </p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="510">510 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+
+          <div class="container_sub" id="section2">
+            <ul class="product-list">
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Ballena Azul">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumis_ballena_azul.webp" alt="Sonajero Alces"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Ballena Azul</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Pingüino Gris">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumis_pinguino_verde.webp" alt="Sonajero Alces"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Pingüino Gris</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Ballena Verde">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumi_ballena_azulgris.webp" alt="Sonajero Alces"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Ballena Verde</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Pingüinos Blanco">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumis_pinguino_blanco.webp" alt="Sonajero Alces"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Pingüinos Blanco</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Ballena Marrón">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumi_ballena_maron.webp" alt="Sonajero Alces"
+                        loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Ballena Marrón</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+
+              <li>
+                <div class="product-card" data-price="955" data-name="Amigurumi Ballena Gris">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/AMIGURIS/amigurumis_ballena_gris.webp" alt="Amigurumi" loading="lazy"
+                        width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Amigurumi Ballena Gris</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="955">955 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+
+          <div class="container_sub" id="section3">
+            <ul class="product-list">
+
+              <li>
+                <div class="product-card" data-price="750" data-name="Sujetador de Chupete Jirafa">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sujetador/sujetador_chupete1-removebg-preview.webp"
+                        alt="Sonajero Alces" loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sujetador de Chupete Jirafa</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="750">750 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+
+              <li>
+                <div class="product-card" data-price="750" data-name="Sujetador de Chupete Oso">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sujetador/sujetador_chupete_conejo-removebg-preview.webp"
+                        alt="Sonajero Alces" loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sujetador de Chupete Oso</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="750">750 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="750" data-name="Sujetador de Chupete Conejo">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sujetador/sujetador_chupete_conejo2-removebg-preview.webp"
+                        alt="Sonajero Alces" loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sujetador de Chupete Conejo</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="750">750 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="750" data-name="Sujetador de Chupete Elefante">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sujetador/sujetador_chupete_elefante-removebg-preview.webp"
+                        alt="Sonajero Alces" loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sujetador de Chupete Elefante</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="750">750 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card" data-price="750" data-name="Sujetador de Chupete León">
+
+                  <figure class="card-banner">
+
+                    <p>
+                      <img src="../images/Catalogo/Sujetador/sujetador_chupete_leon-removebg-preview.webp"
+                        alt="Sonajero Alces" loading="lazy" width="800" height="1034" class="w-100">
+                    </p>
+
+                    <div class="card-actions">
+
+                      <button class="card-action-btn" aria-label="Quick view">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+
+                      <button class="card-action-btn cart-btn" onclick="addToCart(this)">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                        <p>Añadir al carrito</p>
+                      </button>
+
+                    </div>
+
+                  </figure>
+
+                  <div class="card-content">
+                    <h3 class="h4 card-title">
+                      <span>Sujetador de Chupete León</span>
+                      <p style="max-width: 80%; color:rgb(87, 87, 87) ; font-size: 15px;">Articulo en crochet</p>
+                      <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                      </div>
+                    </h3>
+
+                    <div class="card-price">
+                      <data value="750">750 DOP</data>
+                    </div>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease" onclick="updateProductQuantity(this, -1)">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-increase" onclick="updateProductQuantity(this, 1)">+</button>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- 
+    - #FOOTER
+  -->
+  <footer class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a class="logo">
+            <img src="../images/Logo/logoDECASAKids(png).webp" width="80px" alt="logo_icon">
+          </a>
+
+          <p class="footer-text">
+            En DecasaKids, nuestra misión es convertir cada momento en algo mágico e inolvidable para los bebés y sus
+            familias.
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="https://www.facebook.com/profile.php?id=100084020117671" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.instagram.com/decasakidsrd/" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Información</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Inicio</a>
+          </li>
+
+          <li>
+            <a href="./sobre.html" class="footer-link">Sobre Nosotros</a>
+          </li>
+
+          <li>
+            <a href="./politica.html" class="footer-link">Política de privacidad</a>
+          </li>
+
+          <li>
+            <a href="./condiciones.html" class="footer-link">Condiciones de uso</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Categoría</p>
+          </li>
+
+          <li>
+            <a class="footer-link">SONAJEROS</a>
+          </li>
+
+          <li>
+            <a class="footer-link">AMIGURUMIS</a>
+          </li>
+
+          <li>
+            <a class="footer-link">SUJETADOR DE CHUPETES</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Ayuda y soporte</p>
+          </li>
+
+          <li>
+            <a href="./preguntas.html" class="footer-link">Preguntas frecuentes</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Envío y entrega</a>
+          </li>
+
+          <li>
+            <a href="https://wa.me/18098999499" target="_blank" class="footer-link">Contacto</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+          &copy; 2024 <a href="#">Decasa Kids RD</a>. Todos los derechos reservados
+        </p>
+
+        <ul class="footer-bottom-list">
+
+          <li>
+            <a href="./sitemap.html" class="footer-bottom-link">Sitemap |</a>
+          </li>
+
+          <li>
+            <a href="https://www.instagram.com/roanexus/" class="footer-bottom-link">Tecnología de Roa Nexus</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="../js/catalogo.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

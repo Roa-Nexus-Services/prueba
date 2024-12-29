@@ -61,7 +61,7 @@ function addToCart(button) {
   button.textContent = "Agregado";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+/*document.addEventListener("DOMContentLoaded", () => {
   const productsContainer = document.querySelector(".products-container-circulo");
   const selectedProduct = document.querySelector(".selected-product");
   const productImages = document.querySelectorAll(".productos_circulo img");
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(rotateWheel, 3000);
 
   updateSelectedProduct();
-});
+});*/
 
 
 const backgrounds = [

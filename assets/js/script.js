@@ -97,17 +97,17 @@ const backgrounds = [
   { 
     image: './assets/images/Fondo/fondo1.webp', 
     text: 'SONAJEROS AMIGURUMI', 
-    link: '../html/catalogo.html' 
+    link: 'https://decasakids.com/assets/html/catalogo.html' 
   },
   { 
     image: './assets/images/Fondo/fondo2.webp', 
     text: 'COMPAÑERO AMIGURUMI', 
-    link: '../html/catalogo.html' 
+    link: 'https://decasakids.com/assets/html/catalogo.html' 
   },
   { 
     image: './assets/images/Fondo/fondo3.jpg', 
     text: 'DENTI AMIGOS', 
-    link: '../html/catalogo.html' 
+    link: 'https://decasakids.com/assets/html/catalogo.html' 
   }
 ];
 

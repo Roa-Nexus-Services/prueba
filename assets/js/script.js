@@ -97,17 +97,17 @@ const backgrounds = [
   { 
     image: './assets/images/Fondo/fondo1.webp', 
     text: 'SONAJEROS AMIGURUMI', 
-    link: './sonajeros.html' 
+    link: '../html/catalogo.html' 
   },
   { 
     image: './assets/images/Fondo/fondo2.webp', 
     text: 'COMPAÑERO AMIGURUMI', 
-    link: './companero.html' 
+    link: '../html/catalogo.html' 
   },
   { 
     image: './assets/images/Fondo/fondo3.jpg', 
     text: 'DENTI AMIGOS', 
-    link: './denti.html' 
+    link: '../html/catalogo.html' 
   }
 ];
 
@@ -137,7 +137,9 @@ function changeBackground(nextIndex) {
   }, 1000); // Duración de la transición
 }
 
-// Detectar scroll y teclas
+// Detectar scroll con mouse o tactil
+let touchStartY = 0;
+
 window.addEventListener('wheel', (event) => {
   if (event.deltaY > 0) {
     changeBackground(currentIndex + 1); // Scroll hacia abajo
@@ -146,6 +148,28 @@ window.addEventListener('wheel', (event) => {
   }
 });
 
+// Detectar deslizar en pantallas táctiles
+window.addEventListener('touchstart', (event) => {
+  touchStartY = event.touches[0].clientY;
+});
+
+window.addEventListener('touchmove', (event) => {
+  if (!touchStartY) return;
+
+  const touchEndY = event.touches[0].clientY;
+  const deltaY = touchStartY - touchEndY;
+
+  if (Math.abs(deltaY) > 50) { // Umbral de movimiento para evitar movimientos pequeños
+    if (deltaY > 0) {
+      changeBackground(currentIndex + 1); // Deslizar hacia abajo
+    } else {
+      changeBackground(currentIndex - 1); // Deslizar hacia arriba
+    }
+    touchStartY = null; // Resetear el inicio de toque para evitar múltiples activaciones
+  }
+});
+
+// Detectar teclas de flecha
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowDown') {
     changeBackground(currentIndex + 1); // Flecha abajo
@@ -156,4 +180,3 @@ window.addEventListener('keydown', (event) => {
 
 // Inicializar el fondo al cargar la página
 setBackground(currentIndex);
-

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero con Menú Responsive</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Deshabilitar scroll */
+            height: 100vh;
+            background-color: #121212;
+        }
+
+        /* Hero */
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 2rem;
+            opacity: 1;
+        }
+
+        .hero span {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Menú */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 10; /* Asegura que esté encima del hero */
+        }
+
+        .menu .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .menu nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu nav ul li {
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .menu nav ul li:hover {
+            color: #00bcd4;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .menu nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú -->
+    <div class="menu">
+        <div class="logo">Mi Sitio</div>
+        <nav>
+            <ul>
+                <li>Inicio</li>
+                <li>Servicios</li>
+                <li>Portafolio</li>
+                <li>Contacto</li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <span>Desliza hacia abajo para cambiar la imagen</span>
+    </section>
+
+    <script>
+        // Selección de elementos
+        const hero = document.getElementById('hero');
+
+        // Array con las imágenes y descripciones
+        const backgrounds = [
+            { image: './assets/images/2.webp', text: 'Imagen 1: Bienvenido' },
+            { image: './assets/images/fondo_home.webp', text: 'Imagen 2: Explora' },
+            { image: './assets/images/logo-home.webp', text: 'Imagen 3: Inspírate' }
+        ];
+
+        let currentIndex = 0; // Índice actual
+        let isTransitioning = false; // Evita cambios mientras está en transición
+
+        // Función para actualizar la imagen y el texto
+        function updateBackground(index) {
+            const { image, text } = backgrounds[index];
+            hero.style.opacity = 0; // Desvanece antes del cambio
+            setTimeout(() => {
+                hero.style.backgroundImage = `url('${image}')`;
+                hero.querySelector('span').textContent = text;
+                hero.style.opacity = 1; // Aparece después del cambio
+            }, 500); // Sincronizado con la transición de 1s
+        }
+
+        // Detectar scroll y cambiar la imagen
+        window.addEventListener('wheel', (event) => {
+            if (isTransitioning) return; // Si está en transición, ignorar scroll
+
+            event.preventDefault(); // Evita el desplazamiento del scroll
+            isTransitioning = true; // Bloquea cambios adicionales
+
+            // Determinar dirección del scroll
+            if (event.deltaY > 0) {
+                // Scroll hacia abajo
+                currentIndex = (currentIndex + 1) % backgrounds.length;
+            } else {
+                // Scroll hacia arriba
+                currentIndex = (currentIndex - 1 + backgrounds.length) % backgrounds.length;
+            }
+
+            updateBackground(currentIndex); // Actualiza la imagen
+            setTimeout(() => isTransitioning = false, 1000); // Permite nuevos cambios después de la transición
+        }, { passive: false }); // Control total del evento de scroll
+
+        // Cargar la imagen inicial
+        updateBackground(currentIndex);
+    </script>
+</body>
+</html>

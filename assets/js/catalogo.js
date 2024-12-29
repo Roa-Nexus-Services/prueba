@@ -49,35 +49,33 @@ function addToCart(button) {
   const cartBox = document.querySelector(".cart-box");
   const productCount = boxContent.childElementCount;
 
-  // Verifica si el carrito está lleno
   if (productCount >= maxProducts) {
     cartBox.classList.add("full");
     alert("La caja está llena. No puedes agregar más productos.");
     return;
   }
 
-  // Añade la imagen del producto al carrito visual
   const img = document.createElement("img");
   img.src = imageSrc;
   img.alt = "Producto";
   boxContent.appendChild(img);
 
-  // Actualiza el precio total y añade el producto a la lista
   totalPrice += price;
   selectedProducts.push({ name, price });
   document.getElementById("total-price").textContent = totalPrice.toFixed(2);
 
-  // Desactiva el botón y cambia su texto
   button.disabled = true;
   button.textContent = "Agregado";
 }
 
-function sendToGoogleSheets(event) {
-  event.preventDefault(); // Evita la recarga de la página
+document.getElementById("sendToWhatsApp").addEventListener("click", sendOrderToWhatsApp);
+
+function sendOrderToWhatsApp(event) {
+  event.preventDefault(); // Evitar la recarga de la página
 
   if (selectedProducts.length === 0) {
-    alert("No hay productos en la caja para enviar.");
-    return;
+      alert("No hay productos en la caja para enviar.");
+      return;
   }
 
   const companyName = document.getElementById("companyName").value.trim();
@@ -85,40 +83,40 @@ function sendToGoogleSheets(event) {
   const phone = document.getElementById("phone").value.trim();
 
   if (!companyName || !email || !phone) {
-    alert("Por favor, completa todos los campos.");
-    return;
+      alert("Por favor, completa todos los campos.");
+      return;
   }
 
-  const orderDetails = {
-    companyName,
-    email,
-    phone,
-    products: selectedProducts,
-    totalPrice: totalPrice.toFixed(2),
-    date: new Date().toLocaleString(),
-  };
+  // Construir el mensaje para WhatsApp
+  let message = `Pedido de ${companyName}\n\nDetalles del pedido:\n\n`;
 
-  const url = 'https://script.google.com/macros/s/AKfycbz3TUytxCSBsPZGsXFD_7twrEeQDQoFnMA2tFKwgLFlpuTM09u9iLNNylm_oS75AfOE/exec'; // URL de Google Apps Script
+  selectedProducts.forEach(product => {
+    const productCard = document.querySelector(`.product-card[data-name="${product.name}"]`);
+    const quantitySpan = productCard.querySelector('.quantity');
+    const quantity = parseInt(quantitySpan.textContent) || 1; // Si no hay cantidad, asumir 1
 
-  fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(orderDetails),
-    mode: 'no-cors' // Modo no-cors
-  })
-    .then(() => {
-      alert("Pedido enviado con éxito!");
-      document.getElementById("order-form").reset();
-      selectedProducts.length = 0;
-      totalPrice = 0;
-      document.getElementById("total-price").textContent = "0.00";
-      document.getElementById("box-content").innerHTML = '';
-      closeModal(); // Cierra el modal
-    })
-    .catch(error => {
-      console.error("Error al enviar el pedido:", error);
-      alert("Hubo un error al enviar el pedido. Por favor, intenta de nuevo.");
-    });
+    const subtotal = (product.price * quantity).toFixed(2);
+    message += `Producto: ${product.name}\nCantidad: ${quantity}\nPrecio unitario: $${product.price.toFixed(2)}\nSubtotal: $${subtotal}\n\n`;
+  });
+
+  message += `Total: $${totalPrice.toFixed(2)}\n\n`;
+  message += `Datos de contacto:\nEmpresa: ${companyName}\nCorreo: ${email}\nTeléfono: ${phone}`;
+
+  // Enlace para enviar el mensaje a WhatsApp
+  const whatsappUrl = `https://wa.me/18098999499?text=${encodeURIComponent(message)}`; // Tu número de WhatsApp
+
+  // Redirige a WhatsApp
+  window.open(whatsappUrl, "_blank");
+}
+
+
+function resetForm() {
+  document.getElementById("order-form").reset();
+  selectedProducts.length = 0;
+  totalPrice = 0;
+  document.getElementById("total-price").textContent = "0.00";
+  document.getElementById("box-content").innerHTML = '';
+  closeModal(); // Cierra el modal, si es necesario
 }
 
 

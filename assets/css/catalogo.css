@@ -952,7 +952,7 @@ input {
   width: 100%; /* Los botones ocupan el 100% en pantallas pequeñas */
   padding: 10px;
   background-color: #edc796;
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -1050,6 +1050,20 @@ input {
  */
 
 @media (min-width: 300px) {
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre los elementos */
+  }
+
+  .product-list > li {
+    width: calc(50% - 7.5px); /* Dos productos por fila */
+  }
+
+  #btn_o{
+    font-size: 10px;
+  }
+
   .header-searche {
     display: block;
     position: relative;
@@ -1092,7 +1106,21 @@ input {
 
   .category-list > li { width: calc(50% - 15px); }
 
-  .product-list > li { width: calc(50% - 12.5px); }
+  /*.product-list > li { width: calc(50% - 12.5px); }*/
+
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre los elementos */
+  }
+
+  .product-list > li {
+    width: calc(50% - 7.5px); /* Dos productos por fila */
+  }
+
+  .card-action-btn{
+    font-size: 10px;
+  }
 
   #filtered-container > li { width: calc(50% - 12.5px); }
 

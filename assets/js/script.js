@@ -92,3 +92,68 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSelectedProduct();
 });
 
+
+const backgrounds = [
+  { 
+    image: './assets/images/Fondo/fondo1.webp', 
+    text: 'SONAJEROS AMIGURUMI', 
+    link: './sonajeros.html' 
+  },
+  { 
+    image: './assets/images/Fondo/fondo2.webp', 
+    text: 'COMPAÑERO AMIGURUMI', 
+    link: './companero.html' 
+  },
+  { 
+    image: './assets/images/Fondo/fondo3.jpg', 
+    text: 'DENTI AMIGOS', 
+    link: './denti.html' 
+  }
+];
+
+const heroSection = document.getElementById('hero');
+let currentIndex = 0;
+let isTransitioning = false;
+
+// Mostrar el primer fondo al cargar la página
+function setBackground(index) {
+  const bg = backgrounds[index];
+  heroSection.style.backgroundImage = `url('${bg.image}')`;
+  heroSection.querySelector('span').innerHTML = `<a href="${bg.link}" style="color: #fff; text-decoration: none;">${bg.text}</a>`;
+}
+
+// Cambiar fondo con animación y control de transición
+function changeBackground(nextIndex) {
+  if (isTransitioning || nextIndex < 0 || nextIndex >= backgrounds.length) return;
+
+  isTransitioning = true;
+  heroSection.style.opacity = 0; // Ocultar antes de cambiar
+
+  setTimeout(() => {
+    currentIndex = nextIndex;
+    setBackground(currentIndex);
+    heroSection.style.opacity = 1; // Mostrar el nuevo fondo
+    isTransitioning = false;
+  }, 1000); // Duración de la transición
+}
+
+// Detectar scroll y teclas
+window.addEventListener('wheel', (event) => {
+  if (event.deltaY > 0) {
+    changeBackground(currentIndex + 1); // Scroll hacia abajo
+  } else {
+    changeBackground(currentIndex - 1); // Scroll hacia arriba
+  }
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowDown') {
+    changeBackground(currentIndex + 1); // Flecha abajo
+  } else if (event.key === 'ArrowUp') {
+    changeBackground(currentIndex - 1); // Flecha arriba
+  }
+});
+
+// Inicializar el fondo al cargar la página
+setBackground(currentIndex);
+

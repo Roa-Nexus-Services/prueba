@@ -242,7 +242,7 @@ h3 > a { color: inherit; }
 .nav-open-btn span {
   width: 20px;
   height: 2px;
-  background: #fff;
+  background: #edc796;
   transition: var(--transition-1);
 }
 
@@ -306,7 +306,7 @@ h3 > a { color: inherit; }
 .header-action-btn .btn-badge.green { --background: var(--middle-blue-green); }
 
 .navbar {
-  background: transparent;
+  background: white;
   position: fixed;
   top: 0;
   right: -300px;
